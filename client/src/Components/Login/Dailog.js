@@ -66,7 +66,7 @@ const LoginDailog = ({open,setOpen}) => {
       console.log(response);
       if(response.status===200){
       handleClose();
-      setAccountInfo(loginData.username)
+      setAccountInfo(response.data.data.firstname)
       }
       else{
           setError(true)
