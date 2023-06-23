@@ -1,1 +1,4 @@
-Flipkart Application Clone using react js,node js ,mongo db and material ui 
+Flipkart Application Clone
+Frontend - React js,redux & material ui 
+Backend - Node js & express Js
+Database - Mongo DB
