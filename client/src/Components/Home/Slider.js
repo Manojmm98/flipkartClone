@@ -3,6 +3,7 @@ import React from 'react'
 import Carousel from "react-multi-carousel";
 import Countdown from 'react-countdown';
 import "react-multi-carousel/lib/styles.css";
+import {Link} from 'react-router-dom'
 
 const styles = {
 
@@ -110,12 +111,14 @@ const styles = {
     >
        {
          products.map((data)=>(
+           <Link to = {`product/${data.id}`}>
             <Box sx={{textAlign:'center',padding:"15px 25px"}}>
              <img src={data.url} alt='products' style={styles.sliderImage} />
              <Text style={{fontWeight:600,color:"#212121"}}>{data.title.shortTitle}</Text>
              <Text style={{color:"green"}}>{data.discount}</Text>
              <Text style={{color:"#212121",opacity:"0.6"}}>{data.tagline}</Text>
              </Box>
+            </Link>
              
          ))
        }

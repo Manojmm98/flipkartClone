@@ -128,7 +128,7 @@ const LoginDailog = ({open,setOpen}) => {
               <Box style={styles.first}>
                 <Typography variant='h5' style={{color:"#fff",fontWeight:600}}>{toogleAccount.heading}</Typography>
                 <Typography style={{marginTop:"20px",color:"#fff"}}>{toogleAccount.subHeading}</Typography>
-                <img src='https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png' style={{marginTop:"60%"}} align='center'></img>
+                <img src='https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png' alt='loginpage' style={{marginTop:"60%"}} align='center'></img>
               </Box>
             { toogleAccount.view === "login" ?
               <Box  sx={{padding:"25px 35px",flex:1,marginTop:"20px",width:"60%"}}>

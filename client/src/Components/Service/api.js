@@ -1,4 +1,3 @@
-import React from 'react'
 import axios from 'axios'
 
 const URL = 'http://localhost:8080'
@@ -22,4 +21,14 @@ export const AuthnticateUserLogin = async(data) => {
         return error.response;
     }
 
+}
+export const PayUsingPaytm = async(data) =>{
+    try {
+      let response = await axios.post(`${URL}/payment`,data);
+      return response.data;
+    }
+    catch(error){
+      console.log('Error While calling payment api',error.message);
+      return error.response;
+    }
 }

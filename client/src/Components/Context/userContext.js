@@ -9,7 +9,8 @@ const DataProvider = (props)=>{
     return (
         <DataContext.Provider value={{
             accountInfo,
-            setAccountInfo
+            setAccountInfo,
+            
         }}>
             {props.children}
         </DataContext.Provider>
