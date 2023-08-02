@@ -27,8 +27,8 @@ const SignUpInformation ={
      phone : ''
 }
 const loginInformation ={
-  username : "",
-  password : ""
+  username : '',
+  password : ''
 }
 
 const LoginDailog = ({open,setOpen}) => {
@@ -51,11 +51,13 @@ const LoginDailog = ({open,setOpen}) => {
     }
 
     const handleSignUp=(e)=>{
+       setError(false);
        setsignupData({...signupData,[e.target.name]: e.target.value})
        console.log(signupData);
     }
 
     const handleLogin=(e)=>{
+      setError(false)
       setloginData({...loginData,[e.target.name]: e.target.value})
       console.log(loginData);
     }
@@ -74,8 +76,10 @@ const LoginDailog = ({open,setOpen}) => {
     }
 
     const userSignup= async()=>{
+      setError(false)
      let response =  await  AuthnticateUserSignup(signupData);
       if(!response){
+        setError(true)
         return;
       }
       handleClose();
@@ -112,7 +116,7 @@ const LoginDailog = ({open,setOpen}) => {
          error : {
             color:"red",
             fontSize:"10px",
-            lineHeight:0,
+            lineHeight:1,
             marginTop:' 10px',
             marginBottom:"10px",
             fontWeight:600
@@ -150,6 +154,7 @@ const LoginDailog = ({open,setOpen}) => {
                    <TextField variant='standard' label='Enter Email' fullWidth={true} name='email'  onChange={(e)=>handleSignUp(e)}></TextField>
                    <TextField variant='standard' label='Enter Password' fullWidth={true} name='password'  onChange={(e)=>handleSignUp(e)}></TextField>
                    <TextField variant='standard' label='Enter phone' fullWidth={true} name='phone'  onChange={(e)=>handleSignUp(e)}></TextField>
+                   {Error && <Typography style={styles.error}  >One or More Details are Already Exists Enter Unique Data</Typography>}
                     <Button style={styles.loginButton} onClick={()=>userSignup()}>Continue</Button>
               </Box>
                
