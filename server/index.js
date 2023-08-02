@@ -1,79 +1,37 @@
-"use strict";
+import express from 'express'
+import connection from './database/db.js';
+import dotenv from 'dotenv'
+import defaultData from './default.js';
+import router from './Routes/Routes.js';
+import cors from 'cors'
+import bodyParser from 'body-parser';
+import {v4 as uuid} from 'uuid'
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "NIL", {
-  enumerable: true,
-  get: function () {
-    return _nil.default;
-  }
-});
-Object.defineProperty(exports, "parse", {
-  enumerable: true,
-  get: function () {
-    return _parse.default;
-  }
-});
-Object.defineProperty(exports, "stringify", {
-  enumerable: true,
-  get: function () {
-    return _stringify.default;
-  }
-});
-Object.defineProperty(exports, "v1", {
-  enumerable: true,
-  get: function () {
-    return _v.default;
-  }
-});
-Object.defineProperty(exports, "v3", {
-  enumerable: true,
-  get: function () {
-    return _v2.default;
-  }
-});
-Object.defineProperty(exports, "v4", {
-  enumerable: true,
-  get: function () {
-    return _v3.default;
-  }
-});
-Object.defineProperty(exports, "v5", {
-  enumerable: true,
-  get: function () {
-    return _v4.default;
-  }
-});
-Object.defineProperty(exports, "validate", {
-  enumerable: true,
-  get: function () {
-    return _validate.default;
-  }
-});
-Object.defineProperty(exports, "version", {
-  enumerable: true,
-  get: function () {
-    return _version.default;
-  }
-});
+const app = express();
+dotenv.config()
+app.use(cors())
+app.use(bodyParser.json({ extended:true }))
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/',router)
+const PORT = 8080;
+const USERNAME = process.env.DB_USERNAME
+const PASSWORD = process.env.DB_PASSWORD
 
-var _v = _interopRequireDefault(require("./v1.js"));
+connection(USERNAME,PASSWORD);
+app.listen(PORT,()=>{console.log(`server is running on ${PORT} fine`)})
+defaultData();
 
-var _v2 = _interopRequireDefault(require("./v3.js"));
+defaultData();
 
-var _v3 = _interopRequireDefault(require("./v4.js"));
-
-var _v4 = _interopRequireDefault(require("./v5.js"));
-
-var _nil = _interopRequireDefault(require("./nil.js"));
-
-var _version = _interopRequireDefault(require("./version.js"));
-
-var _validate = _interopRequireDefault(require("./validate.js"));
-
-var _stringify = _interopRequireDefault(require("./stringify.js"));
-
-var _parse = _interopRequireDefault(require("./parse.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+export let paymentMerchantKey =  process.env.PAYTM_MERCHANT_KEY;
+export let paytmParams = {};
+paytmParams['MID'] = process.env.PAYTM_MID
+paytmParams['WEBSITE'] = process.env.PAYTM_WEBSITE
+paytmParams['CHANNEL_ID'] = process.env.PAYTM_CHANNEL_ID
+paytmParams['INDUSTRY_TYPE_ID'] = process.env.PAYTM_INDUSTRY_TYPE_ID
+paytmParams['ORDER_ID'] = uuid();
+paytmParams['CUST_ID'] = process.env.PAYTM_CUST_ID
+paytmParams['TXN_AMOUNT'] = '100'
+paytmParams['CALLBACK_URL'] = 'http://localhost:8080/callback'
+paytmParams['EMAIL'] = 'manojmishra98feb@gmail.com'
+paytmParams['MOBILE_NO'] = '7377340164'

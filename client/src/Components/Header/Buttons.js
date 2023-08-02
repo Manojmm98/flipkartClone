@@ -1,5 +1,5 @@
 import React,{useState,useContext} from 'react'
-import { Button, Stack, Typography,Box, Badge } from '@mui/material'
+import { Button, Stack, Typography,Box, Badge, styled } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LoginDailog from '../Login/Dailog';
 import { DataContext } from '../Context/userContext';
@@ -33,12 +33,20 @@ const {accountInfo,setAccountInfo}  = useContext(DataContext)
         
       };
 
+      const Wrapper = styled(Stack)(({theme})=>({
+        
+       [theme.breakpoints.down('md')] : {
+         display:"block",
+       }
+     }))
+      
+
   const handleLogin=()=>{
      setOpen(true)
   }
 
   return (
-    <Stack direction='row' spacing={4}>
+    <Wrapper direction='row' spacing={4}>
         <Box>
          {accountInfo ?
             <Profile accountInfo={accountInfo} setAccountInfo={setAccountInfo}/>
@@ -60,7 +68,7 @@ const {accountInfo,setAccountInfo}  = useContext(DataContext)
         </Box>
          </Link>
         <LoginDailog open={open} setOpen={setOpen}/>
-    </Stack>
+    </Wrapper>
   )
 }
 

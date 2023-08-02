@@ -37,7 +37,7 @@ const Header = () => {
   }
 
   const list = ()=>(
-     <Box>
+     <Box sx={{width:250}}>
        <List>
         <ListItem>
         <Buttons/>
