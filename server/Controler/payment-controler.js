@@ -1,5 +1,5 @@
 import paytmchecksum from "../paytm/PaytmChecksum.js"
-import { paymentMerchantKey,paytmParams } from "../server.js"
+import { paymentMerchantKey,paytmParams } from "../index.js"
 import formidable from "formidable";
 import https from 'https'
 
@@ -59,7 +59,7 @@ export const paytmResponse = async (request,response) =>{
 
            post_res.on('end',function(){
               let result = json.parse(res)
-              response.redirect('')
+              response.redirect('http://localhost:3000')
            })  
          })
 

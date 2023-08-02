@@ -7,7 +7,6 @@ import Profile from './Profile';
 import {Link} from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import { red } from '@mui/material/colors';
-import styled from '@emotion/styled';
 
 
 
@@ -20,12 +19,6 @@ const {accountInfo,setAccountInfo}  = useContext(DataContext)
 
  const {cartItems} = useSelector(state=>state.cart)
 
- const Wrapper = styled(Stack)(({theme})=>({
-  
- [theme.breakpoints.down('md')] : {
-    display:'block'
- }
-}))
 
     const styles = {       
        button:{
@@ -45,7 +38,7 @@ const {accountInfo,setAccountInfo}  = useContext(DataContext)
   }
 
   return (
-    <Wrapper direction='row' spacing={4}>
+    <Stack direction='row' spacing={4}>
         <Box>
          {accountInfo ?
             <Profile accountInfo={accountInfo} setAccountInfo={setAccountInfo}/>
@@ -67,7 +60,7 @@ const {accountInfo,setAccountInfo}  = useContext(DataContext)
         </Box>
          </Link>
         <LoginDailog open={open} setOpen={setOpen}/>
-    </Wrapper>
+    </Stack>
   )
 }
 

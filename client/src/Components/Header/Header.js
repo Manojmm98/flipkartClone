@@ -37,7 +37,7 @@ const Header = () => {
   }
 
   const list = ()=>(
-     <Box sx={{width:'250px'}} onClick={handleClose}>
+     <Box>
        <List>
         <ListItem>
         <Buttons/>

@@ -3,7 +3,7 @@ import * as ActionType from '../contraints/productConstants'
 
 
 
-const URL = ''
+const URL = 'http://localhost:8080'
 
  export const getProductAction = () => async(dispatch) => {
 
