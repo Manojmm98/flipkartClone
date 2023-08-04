@@ -26,12 +26,12 @@ app.use('/',router)
 //we need to change up how __dirname is used for ES6 purposes
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-app.use(express.static(path.join(__dirname, "./client/build")));
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+    res.sendFile(path.join(__dirname, "../client/build/index.html"));
   });
-  
+
 const PORT = process.env.PORT || 8080;
 
 // Mongo db Connection
