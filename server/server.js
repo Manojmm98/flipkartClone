@@ -6,23 +6,42 @@ import router from './Routes/Routes.js';
 import cors from 'cors'
 import bodyParser from 'body-parser';
 import {v4 as uuid} from 'uuid'
+import path from 'path'
+import { fileURLToPath } from 'url';
 
+// rest object
 const app = express();
+
+// dotenv config
 dotenv.config()
+
 app.use(cors())
+
 app.use(bodyParser.json({ extended:true }))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/',router)
-const PORT = 8080;
-const USERNAME = process.env.DB_USERNAME
-const PASSWORD = process.env.DB_PASSWORD
 
-connection(USERNAME,PASSWORD);
+// static files
+
+//we need to change up how __dirname is used for ES6 purposes
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+app.use(express.static(path.join(__dirname, "./client/build")));
+
+app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  });
+  
+const PORT = process.env.PORT || 8080;
+
+// Mongo db Connection
+connection();
+
 app.listen(PORT,()=>{console.log(`server is running on ${PORT} fine`)})
 defaultData();
 
-defaultData();
 
+// payment gateway
 export let paymentMerchantKey =  process.env.PAYTM_MERCHANT_KEY;
 export let paytmParams = {};
 paytmParams['MID'] = process.env.PAYTM_MID
